@@ -1,0 +1,61 @@
+syntax="proto3";
+
+option go_package = "./genproto/eventpb";
+
+service EventService {
+    rpc CreateEvent(CreateEventRequest) returns (Event);
+    rpc GetEvent(GetEventRequest) returns (Event);
+    rpc ListOfEvent(ListOfEventRequest) returns (ListOfEventResponse);
+    rpc UpdateEvent(UpdateEventRequest) returns (Event);
+    rpc DeleteEvent(DeleteEventRequest) returns (DeleteEventResponse);
+}
+
+message Event {
+    string id = 1;
+    string name = 2;
+    string sport_type = 3;
+    string location = 4;
+    string date = 5;
+    string start_time = 6;
+    string end_time = 7;
+    string created_at = 8;
+    string updated_at = 9;
+    int64 deleted_at = 10;
+}
+
+message CreateEventRequest {
+    string name = 1;
+    string sport_type = 2;
+    string location = 3;
+    string date = 4;
+    string start_time = 5;
+    string end_time = 6;
+}
+
+message GetEventRequest {
+    string id = 1;
+}
+
+message ListOfEventRequest {}
+
+message ListOfEventResponse {
+    repeated Event events = 1;
+}
+
+message UpdateEventRequest {
+    string id = 1;
+    string name = 2;
+    string sport_type = 3;
+    string location = 4;
+    string date = 5;
+    string start_time = 6;
+    string end_time = 7;
+}
+
+message DeleteEventRequest {
+    string id = 1;
+}
+
+message DeleteEventResponse {
+    string status = 1;
+}

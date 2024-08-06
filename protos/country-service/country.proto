@@ -1,0 +1,52 @@
+syntax="proto3";
+
+option go_package = "./genproto/countrypb";
+
+service CountryService {
+    rpc CreateCountry(CreateCountryRequest) returns (Country);
+    rpc GetCountry(GetCountryRequest) returns (Country);
+    rpc ListOfCountry(ListOfCountryRequest) returns (ListOfCountryResponse);
+    rpc UpdateCountry(UpdateCountryRequest) returns (Country);
+    rpc DeleteCountry(DeleteCountryRequest) returns (DeleteCountryResponse);
+}
+
+message Country {
+    string id = 1;
+    string name = 2;
+    string flag = 3;
+    string region = 4;
+    string created_at = 5;
+    string updated_at = 6;
+    int64 deleted_at = 7;
+}
+
+message CreateCountryRequest {
+   string name = 1;
+   string flag = 2;
+   string region = 3;
+}
+
+message GetCountryRequest {
+    string id = 1;
+}
+
+message ListOfCountryRequest {}
+
+message ListOfCountryResponse {
+    repeated Country countries = 1;
+}
+
+message UpdateCountryRequest {
+    string id = 1;
+    string name = 2;
+    string flag = 3;
+    string region = 4;
+}
+
+message DeleteCountryRequest {
+    string id = 1;
+}
+
+message DeleteCountryResponse {
+    string status = 1;
+}

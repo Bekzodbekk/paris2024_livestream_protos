@@ -1,0 +1,63 @@
+syntax="proto3";
+
+option go_package = "./genproto/athletepb";
+
+service AthleteService {
+    rpc CreateAthlete(CreateAthleteRequest) returns (Athlete);
+    rpc GetAthlete(GetAthleteRequest) returns (GetAthleteResponse);
+    rpc ListOfAthlete(ListOfAthleteRequest) returns (ListOfAthleteResponse);
+    rpc UpdateAthlete(UpdateAthleteRequest) returns (Athlete);
+    rpc DeleteAthlete(DeleteAthleteRequest) returns (DeleteAthleteResponse);
+}
+
+message Athlete {
+    string id = 1;
+    string name = 2;
+    string country_id = 3;
+    string sport_type = 4;
+    string created_at = 5;
+    string updated_at = 6;
+    int64 deleted_at = 7;
+}
+
+message CreateAthleteRequest {
+    string name = 2;
+    string country_id = 3;
+    string sport_type = 4;
+}
+
+message GetAthleteRequest {
+    string id = 1;
+}
+
+message GetAthleteResponse {
+    string id = 1;
+    string name = 2;
+    string country_name = 3;
+    string country_id = 4;
+    string sport_type = 5;
+    string created_at = 6;
+    string updated_at = 7;
+    int64 deleted_at = 8;
+}
+
+message ListOfAthleteRequest {}
+
+message ListOfAthleteResponse {
+    repeated GetAthleteResponse athletes = 1;
+}
+
+message UpdateAthleteRequest {
+    string id = 1;
+    string name = 2;
+    string country_id = 3;
+    string sport_type = 4;
+}
+
+message DeleteAthleteRequest {
+    string id = 1;
+}
+
+message DeleteAthleteResponse {
+    string status = 1;
+}
