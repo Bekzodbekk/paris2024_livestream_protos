@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: protos/medal-service/medal.proto
 
-package medals
+package medalspb
 
 import (
 	context "context"

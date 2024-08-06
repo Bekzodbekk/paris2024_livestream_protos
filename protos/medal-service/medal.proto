@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "/genproto/medals";
+option go_package = "/genproto/medalspb";
 
 service MedalService {
     rpc CreateMedal(CreateMedalRequest) returns (CreateMedalResponse);
