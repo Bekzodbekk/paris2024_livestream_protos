@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+option go_package = "/genproto/medals";
+
+service MedalService {
+    rpc CreateMedal(CreateMedalRequest) returns (CreateMedalResponse);
+    rpc UpdateMedal(UpdateMedalRequest) returns (UpdateMedalResponse);
+    rpc DeleteMedal(DeleteMedalRequest) returns (DeleteMedalResponse);
+    rpc GetMedalById(GetMedalByIdRequest) returns (GetMedalByIdResponse);
+    rpc GetMedals(VoidMedal) returns (GetMedalsResponse);
+    rpc GetMedalByFilter(GetMedalByFilterRequest) returns (GetMedalByFilterResponse);
+}
+
+message Medal {
+    string id = 1;
+    string country_id = 2;
+    MedalType type = 3;
+    string event_id = 4;
+    string athlete_id = 5;
+    string created_at = 6;
+    string updated_at = 7;
+    int64 deleted_at = 8;
+}
+
+enum MedalType {
+    GOLD = 0;
+    SILVER = 1;
+    BRONZE = 2;
+}
+
+// Create
+message CreateMedalRequest {
+    string country_id = 1;
+    MedalType type = 2;
+    string event_id = 3;
+    string athlete_id = 4;
+}
+
+message CreateMedalResponse {
+    string id = 1;
+    string country_id = 2;
+    MedalType type = 3;
+    string event_id = 4;
+    string athlete_id = 5;
+    string created_at = 6;
+    string updated_at = 7;
+    int64 deleted_at = 8;
+}
+
+// Read by ID
+message GetMedalByIdRequest {
+    string id = 1;
+}
+
+message GetMedalByIdResponse {
+    string id = 1;
+    string country_id = 2;
+    MedalType type = 3;
+    string event_id = 4;
+    string athlete_id = 5;
+    string created_at = 6;
+    string updated_at = 7;
+    int64 deleted_at = 8;
+}
+
+// Read all medals
+message GetMedalsResponse {
+    repeated Medal medals = 1;
+}
+
+// Read by filter
+message GetMedalByFilterRequest {
+    string country_id = 1;
+    MedalType type = 2;
+    string event_id = 3;
+    string athlete_id = 4;
+}
+
+message GetMedalByFilterResponse {
+    repeated Medal medals = 1;
+}
+
+// Update
+message UpdateMedalRequest {
+    string id = 1;
+    string country_id = 2;
+    MedalType type = 3;
+    string event_id = 4;
+    string athlete_id = 5;
+}
+
+message UpdateMedalResponse {
+    string id = 1;
+    string country_id = 2;
+    MedalType type = 3;
+    string event_id = 4;
+    string athlete_id = 5;
+    string created_at = 6;
+    string updated_at = 7;
+    int64 deleted_at = 8;
+}
+
+// Delete
+message DeleteMedalRequest {
+    string id = 1;
+}
+
+message DeleteMedalResponse {
+    bool success = 1;
+}
+
+// Void message for empty requests
+message VoidMedal {}
