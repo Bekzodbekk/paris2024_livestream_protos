@@ -6,4 +6,5 @@ gen-proto:
 	protos/country-service/country.proto \
 	protos/event-service/event.proto \
 	protos/medal-service/medal.proto \
-	protos/user-service/user.proto 
+	protos/user-service/user.proto \
+	protos/live-service/liveService.proto

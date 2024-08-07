@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "genproto/livepb";
+
+service LiveStreamService{
+    rpc CreateLiveStream(LiveStream) returns (ResponseMessage) {}
+    rpc GetLiveStream(GetStreamRequest) returns (LiveStream) {}
+}
+
+message LiveStream{
+    string event_id = 2;
+    string left_side = 3;
+    string right_side = 4;
+    map<string, string> action = 5;
+    string timestamp = 6;
+}
+
+message ResponseMessage{
+    string status = 1;
+    string message = 2;
+}
+
+message GetStreamRequest{
+    string id = 1;
+}
