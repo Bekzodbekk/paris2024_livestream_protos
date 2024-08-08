@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type LiveStreamServiceClient interface {
 	CreateLiveStream(ctx context.Context, in *LiveStream, opts ...grpc.CallOption) (*ResponseMessage, error)
-	GetLiveStream(ctx context.Context, in *GetStreamRequest, opts ...grpc.CallOption) (*VoidLive, error)
+	GetLiveStream(ctx context.Context, in *GetStreamRequest, opts ...grpc.CallOption) (*StreamVoid, error)
 }
 
 type liveStreamServiceClient struct {
@@ -49,9 +49,9 @@ func (c *liveStreamServiceClient) CreateLiveStream(ctx context.Context, in *Live
 	return out, nil
 }
 
-func (c *liveStreamServiceClient) GetLiveStream(ctx context.Context, in *GetStreamRequest, opts ...grpc.CallOption) (*VoidLive, error) {
+func (c *liveStreamServiceClient) GetLiveStream(ctx context.Context, in *GetStreamRequest, opts ...grpc.CallOption) (*StreamVoid, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(VoidLive)
+	out := new(StreamVoid)
 	err := c.cc.Invoke(ctx, LiveStreamService_GetLiveStream_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -64,7 +64,7 @@ func (c *liveStreamServiceClient) GetLiveStream(ctx context.Context, in *GetStre
 // for forward compatibility
 type LiveStreamServiceServer interface {
 	CreateLiveStream(context.Context, *LiveStream) (*ResponseMessage, error)
-	GetLiveStream(context.Context, *GetStreamRequest) (*VoidLive, error)
+	GetLiveStream(context.Context, *GetStreamRequest) (*StreamVoid, error)
 	mustEmbedUnimplementedLiveStreamServiceServer()
 }
 
@@ -75,7 +75,7 @@ type UnimplementedLiveStreamServiceServer struct {
 func (UnimplementedLiveStreamServiceServer) CreateLiveStream(context.Context, *LiveStream) (*ResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateLiveStream not implemented")
 }
-func (UnimplementedLiveStreamServiceServer) GetLiveStream(context.Context, *GetStreamRequest) (*VoidLive, error) {
+func (UnimplementedLiveStreamServiceServer) GetLiveStream(context.Context, *GetStreamRequest) (*StreamVoid, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLiveStream not implemented")
 }
 func (UnimplementedLiveStreamServiceServer) mustEmbedUnimplementedLiveStreamServiceServer() {}

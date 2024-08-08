@@ -8,16 +8,20 @@ service LiveStreamService{
 }
 
 message LiveStream{
-    string event_id = 2;
-    string left_side = 3;
-    string right_side = 4;
-    map<string, string> action = 5;
-    string timestamp = 6;
+    string event_id = 1;
+    string left_side = 2;
+    string right_side = 3;
+    map<string, string> action = 4;
+    string timestamp = 5;
+    string stream_url = 6;
 }
 
 message ResponseMessage{
     string status = 1;
     string message = 2;
+}
+message BroadcastMessage {
+    LiveStream message = 1;
 }
 
 message GetStreamRequest{
