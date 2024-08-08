@@ -4,7 +4,7 @@ option go_package = "genproto/livepb";
 
 service LiveStreamService{
     rpc CreateLiveStream(LiveStream) returns (ResponseMessage) {}
-    rpc GetLiveStream(GetStreamRequest) returns (LiveStream) {}
+    rpc GetLiveStream(GetStreamRequest) returns (VoidLive) {}
 }
 
 message LiveStream{
@@ -23,3 +23,5 @@ message ResponseMessage{
 message GetStreamRequest{
     string id = 1;
 }
+
+message VoidLive{}
